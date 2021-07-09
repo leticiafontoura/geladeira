@@ -1,0 +1,7 @@
+{
+  "name": "geladeira",
+  "version": "1.0.0",
+  "dependencies": {
+    "nodemon": "^2.0.11"
+  }
+}
