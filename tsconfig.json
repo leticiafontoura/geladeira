@@ -1,0 +1,11 @@
+{
+    "files": ["index.ts"],
+    "compilerOptions": {
+        "target": "ES6",
+        "removeComments": true,
+        "noEmitOnError": true,
+        "outDir": "dist",
+        "strictNullChecks": true,
+        "lib": ["ES6", "DOM"]
+    }
+}
