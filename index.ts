@@ -34,39 +34,59 @@ function addProduct(product: Product) {
     };
 
     products.push(identifiedProduct);
-    id = id + 1;
+    id = id + 2;
 
     return identifiedProduct;
 }
 
 function getProduct(n: number): IdentifiedProduct | undefined {
-    return products.find((product) => product.id === n);
-}
 
-function deleteProduct(n: number): IdentifiedProduct | undefined {
-    const indexOfProductToRemove = products.findIndex((product) => product.id === n);
-
-    if (indexOfProductToRemove === -1) {
-        return undefined;
+    let index: number;
+    for (const product in products) {
+        index = parseInt(product);
+        if (products[index].id === n) {
+            return products[index];
+        }
     }
 
-    const productToRemove = products[indexOfProductToRemove];
+    console.log("Product not found");
+    return undefined
 
-    products.splice(indexOfProductToRemove, 1);
-    return productToRemove;
+}
+
+function deleteProduct(n: number): IdentifiedProduct | undefined  {
+    
+    let index: number;
+    for (const indexOfProductToRemove in products) {
+        index = parseInt(indexOfProductToRemove);
+        if (products[index].id === n) {
+            const productToRemove = products[index];
+            products.splice(index, 1);
+            return productToRemove;
+        }
+    }
+    
+    console.log("Product not found");
+    return undefined
+    
 }
 
 function updateProduct(n: number, productToMerge: Product): IdentifiedProduct | undefined {
-    const productIndexToUpdate = products.findIndex((product) => product.id === n);
-    if (productIndexToUpdate === -1) {
-        return undefined;
+
+    let index: number;
+    for (const productIndexToUpdate in products) {
+        index = parseInt(productIndexToUpdate);
+        if (products[index].id === n) {
+            products[index].name = productToMerge.name;
+            products[index].expireDate = productToMerge.expireDate;
+            products[index].status = productToMerge.status;
+            return products[index];
+        }
     }
 
-    products[productIndexToUpdate].name = productToMerge.name;
-    products[productIndexToUpdate].expireDate = productToMerge.expireDate;
-    products[productIndexToUpdate].status = productToMerge.status;
+    console.log("Product not found");
+    return undefined;
 
-    return products[productIndexToUpdate];
 }
 
 //
@@ -113,9 +133,10 @@ const vinagre: Product = {
     status: ProductState.OPEN,
 };
 
-console.log(products);
-console.log(getProduct(6));
-console.log(deleteProduct(6));
-console.log(updateProduct(4, vinagre));
-updateProduct(4, vinagre);
-console.log(products);
+// console.log(products);
+// console.log(getProduct(2));
+// console.log(deleteProduct(2));
+// console.log(deleteProduct(6));
+// console.log(products);
+// console.log(updateProduct(4, vinagre));
+// console.log(products);
