@@ -41,11 +41,9 @@ function addProduct(product: Product) {
 
 function getProduct(n: number): IdentifiedProduct | undefined {
 
-    let index: number;
-    for (const product in products) {
-        index = parseInt(product);
-        if (products[index].id === n) {
-            return products[index];
+    for (const product of products) {
+        if (product.id === n) {
+            return product
         }
     }
 
@@ -56,32 +54,30 @@ function getProduct(n: number): IdentifiedProduct | undefined {
 
 function deleteProduct(n: number): IdentifiedProduct | undefined  {
     
-    let index: number;
-    for (const indexOfProductToRemove in products) {
-        index = parseInt(indexOfProductToRemove);
-        if (products[index].id === n) {
-            const productToRemove = products[index];
-            products.splice(index, 1);
-            return productToRemove;
+    let index: number = 0;
+    for (const productToRemove of products) {
+        if (productToRemove.id === n) {
+            products.splice(index, 1)
+            return productToRemove
         }
+        index++;
     }
-    
     console.log("Product not found");
     return undefined
-    
+
 }
 
 function updateProduct(n: number, productToMerge: Product): IdentifiedProduct | undefined {
 
-    let index: number;
-    for (const productIndexToUpdate in products) {
-        index = parseInt(productIndexToUpdate);
-        if (products[index].id === n) {
+    let index: number = 0;
+    for (const productToUpdate of products) {
+        if (productToUpdate.id === n) {
             products[index].name = productToMerge.name;
             products[index].expireDate = productToMerge.expireDate;
             products[index].status = productToMerge.status;
-            return products[index];
+            return productToUpdate;
         }
+        index++;
     }
 
     console.log("Product not found");
