@@ -41,9 +41,9 @@ function addProduct(product: Product) {
 
 function getProduct(n: number): IdentifiedProduct | undefined {
 
-    for (const product of products) {
-        if (product.id === n) {
-            return product
+    for (let i=0; i < products.length; i++) {
+        if (products[i].id === n) {
+             return products[i];
         }
     }
 
@@ -54,30 +54,28 @@ function getProduct(n: number): IdentifiedProduct | undefined {
 
 function deleteProduct(n: number): IdentifiedProduct | undefined  {
     
-    let index: number = 0;
-    for (const productToRemove of products) {
-        if (productToRemove.id === n) {
-            products.splice(index, 1)
-            return productToRemove
+    for (let i=0; i < products.length; i++) {
+        if (products[i].id === n) {
+            const productRemoved = products[i];
+            products.splice(i, 1);
+            return productRemoved;
         }
-        index++;
     }
-    console.log("Product not found");
-    return undefined
+
+    console.log("Product nof found");
+    return undefined;
 
 }
 
 function updateProduct(n: number, productToMerge: Product): IdentifiedProduct | undefined {
 
-    let index: number = 0;
-    for (const productToUpdate of products) {
-        if (productToUpdate.id === n) {
-            products[index].name = productToMerge.name;
-            products[index].expireDate = productToMerge.expireDate;
-            products[index].status = productToMerge.status;
-            return productToUpdate;
+    for (let i=0; i < products.length; i++) {
+        if (products[i].id === n) {
+            products[i].name = productToMerge.name;
+            products[i].expireDate = productToMerge.expireDate;
+            products[i].status = productToMerge.status;
+            return products[i];
         }
-        index++;
     }
 
     console.log("Product not found");
@@ -130,9 +128,9 @@ const vinagre: Product = {
 };
 
 // console.log(products);
-// console.log(getProduct(2));
-// console.log(deleteProduct(2));
+// console.log(getProduct(0));
+// console.log(deleteProduct(4));
 // console.log(deleteProduct(6));
 // console.log(products);
-// console.log(updateProduct(4, vinagre));
+// console.log(updateProduct(2, vinagre));
 // console.log(products);
